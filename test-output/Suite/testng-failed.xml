@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]" parallel="tests">
+  <parameter name="UserName" value="ramyaramk"/>
+  <parameter name="InDate" value="26/06/2022"/>
+  <parameter name="Address" value="A-19 East Chess st"/>
+  <parameter name="FirstName" value="Ramya"/>
+  <parameter name="OutDate" value="28/06/2022"/>
+  <parameter name="LastName" value="Ram"/>
+  <parameter name="CVVNum" value="123"/>
+  <parameter name="PassWord" value="aathu@1528"/>
+  <parameter name="CCNo" value="1234567891234567"/>
+  <test name="login">
+    <parameter name="UserName" value="ramyaramk"/>
+    <parameter name="PassWord" value="aathu@1528"/>
+    <classes>
+      <class name="org.test.Example"/>
+    </classes>
+  </test> <!-- login -->
+  <test name="searchHotel">
+    <parameter name="InDate" value="26/06/2022"/>
+    <parameter name="OutDate" value="28/06/2022"/>
+    <classes>
+      <class name="org.test.Example"/>
+    </classes>
+  </test> <!-- searchHotel -->
+  <test name="bookHotel">
+    <parameter name="Address" value="A-19 East Chess st"/>
+    <parameter name="FirstName" value="Ramya"/>
+    <parameter name="LastName" value="Ram"/>
+    <parameter name="CVVNum" value="123"/>
+    <parameter name="CCNo" value="1234567891234567"/>
+    <classes>
+      <class name="org.test.Example"/>
+    </classes>
+  </test> <!-- bookHotel -->
+  <test name="bookHotel(failed)" parallel="tests">
+    <parameter name="Address" value="A-19 East Chess st"/>
+    <parameter name="FirstName" value="Ramya"/>
+    <parameter name="LastName" value="Ram"/>
+    <parameter name="CVVNum" value="123"/>
+    <parameter name="CCNo" value="1234567891234567"/>
+    <classes>
+      <class name="org.test.Example">
+        <methods>
+          <include name="bookHotel" invocation-numbers="0"/>
+          <include name="searchHotel"/>
+          <include name="login"/>
+        </methods>
+      </class> <!-- org.test.Example -->
+    </classes>
+  </test> <!-- bookHotel(failed) -->
+  <test name="searchHotel(failed)" parallel="tests">
+    <parameter name="InDate" value="26/06/2022"/>
+    <parameter name="OutDate" value="28/06/2022"/>
+    <classes>
+      <class name="org.test.Example">
+        <methods>
+          <include name="bookHotel"/>
+          <include name="searchHotel" invocation-numbers="0"/>
+          <include name="login"/>
+        </methods>
+      </class> <!-- org.test.Example -->
+    </classes>
+  </test> <!-- searchHotel(failed) -->
+  <test name="login(failed)" parallel="tests">
+    <parameter name="UserName" value="ramyaramk"/>
+    <parameter name="PassWord" value="aathu@1528"/>
+    <classes>
+      <class name="org.test.Example">
+        <methods>
+          <include name="bookHotel"/>
+          <include name="searchHotel"/>
+        </methods>
+      </class> <!-- org.test.Example -->
+    </classes>
+  </test> <!-- login(failed) -->
+</suite> <!-- Failed suite [Suite] -->
